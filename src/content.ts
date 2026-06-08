@@ -1,6 +1,11 @@
 function main() {
   'use strict';
 
+  console.log(
+    '%c⌨️  JustType is active — just start typing.',
+    'color: #a78bfa; font-weight: bold; font-size: 13px;'
+  );
+
   const SUCCESSION_MS = 300;
 
   let pendingKey: string | null = null;
