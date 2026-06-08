@@ -123,7 +123,7 @@ function main() {
 
       const now = Date.now();
 
-      if (pendingKey !== null && now - pendingTime < SUCCESSION_MS) {
+      if (pendingKey !== null && e.key !== pendingKey && now - pendingTime < SUCCESSION_MS) {
         const firstChar = pendingKey;
         pendingKey = null;
         pendingTime = 0;
