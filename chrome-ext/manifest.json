@@ -3,6 +3,7 @@
   "name": "JustType",
   "version": "1.0.0",
   "description": "Start typing anywhere — JustType finds the right input and routes your text. No clicking. No missed shortcuts.",
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

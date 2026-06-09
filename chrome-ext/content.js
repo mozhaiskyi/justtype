@@ -35,6 +35,9 @@ function main() {
             justTypeTarget = input;
             insertChar(input, firstChar);
             insertChar(input, e.key);
+            chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
+                chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
+            });
         }
         else {
             pendingKey = e.key;
