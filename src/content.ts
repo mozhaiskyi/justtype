@@ -1,5 +1,21 @@
 const SUCCESSION_MS = 300;
 
+const INPUT_SELECTOR = [
+  'input[type="text"]:not([disabled]):not([readonly])',
+  'input[type="search"]:not([disabled]):not([readonly])',
+  'input[type="email"]:not([disabled]):not([readonly])',
+  'input[type="url"]:not([disabled]):not([readonly])',
+  'input[type="number"]:not([disabled]):not([readonly])',
+  'input[type="password"]:not([disabled]):not([readonly])',
+  'input:not([type]):not([disabled]):not([readonly])',
+  'textarea:not([disabled]):not([readonly])',
+  '[contenteditable="true"]',
+  '[contenteditable=""]',
+  '[role="textbox"]',
+  '[role="searchbox"]',
+  '[role="combobox"]',
+].join(',');
+
 function main() {
   console.log(
     '%c⌨️  JustType is active — just start typing.',
@@ -9,6 +25,21 @@ function main() {
   let pendingKey: string | null = null;
   let pendingTime = 0;
   let justTypeTarget: HTMLElement | null = null;
+  const inputTimestamps = new WeakMap<HTMLElement, number>();
+
+  const observer = new MutationObserver((mutations) => {
+    const now = Date.now();
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+        if (node.matches(INPUT_SELECTOR)) inputTimestamps.set(node, now);
+        for (const el of node.querySelectorAll<HTMLElement>(INPUT_SELECTOR)) {
+          inputTimestamps.set(el, now);
+        }
+      }
+    }
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
 
   document.addEventListener(
     'mousedown',
@@ -40,7 +71,7 @@ function main() {
         pendingKey = null;
         pendingTime = 0;
 
-        const input = findBestInput();
+        const input = findBestInput(inputTimestamps);
         if (!input) return;
 
         e.preventDefault();
@@ -109,29 +140,13 @@ function insertChar(input: HTMLElement, char: string): void {
   formInput.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
-function findBestInput(): HTMLElement | null {
-  const selector = [
-    'input[type="text"]:not([disabled]):not([readonly])',
-    'input[type="search"]:not([disabled]):not([readonly])',
-    'input[type="email"]:not([disabled]):not([readonly])',
-    'input[type="url"]:not([disabled]):not([readonly])',
-    'input[type="number"]:not([disabled]):not([readonly])',
-    'input[type="password"]:not([disabled]):not([readonly])',
-    'input:not([type]):not([disabled]):not([readonly])',
-    'textarea:not([disabled]):not([readonly])',
-    '[contenteditable="true"]',
-    '[contenteditable=""]',
-    '[role="textbox"]',
-    '[role="searchbox"]',
-    '[role="combobox"]',
-  ].join(',');
-
+function findBestInput(inputTimestamps: WeakMap<HTMLElement, number>): HTMLElement | null {
   const vh = window.innerHeight;
   const vw = window.innerWidth;
-  let best: HTMLElement | null = null;
-  let bestScore = -1;
+  let bestRecent: { el: HTMLElement; ts: number } | null = null;
+  let bestFallback: { el: HTMLElement; area: number } | null = null;
 
-  for (const el of document.querySelectorAll<HTMLElement>(selector)) {
+  for (const el of document.querySelectorAll<HTMLElement>(INPUT_SELECTOR)) {
     const rect = el.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) continue;
     if (rect.bottom < -100 || rect.top > vh + 100) continue;
@@ -141,14 +156,16 @@ function findBestInput(): HTMLElement | null {
     if (style.display === 'none' || style.visibility === 'hidden') continue;
     if (parseFloat(style.opacity) === 0) continue;
 
-    const score = rect.width * rect.height;
-    if (score > bestScore) {
-      bestScore = score;
-      best = el;
+    const ts = inputTimestamps.get(el);
+    if (ts !== undefined) {
+      if (!bestRecent || ts > bestRecent.ts) bestRecent = { el, ts };
+    } else {
+      const area = rect.width * rect.height;
+      if (!bestFallback || area > bestFallback.area) bestFallback = { el, area };
     }
   }
 
-  return best;
+  return bestRecent?.el ?? bestFallback?.el ?? null;
 }
 
 main();

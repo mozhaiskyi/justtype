@@ -38,3 +38,7 @@ Just type.
   - if timer fires → treat as shortcut → do nothing, let page handle it
   - if second printable key arrives before timer → it's typing →
       focus the most relevant field → replay all buffered characters
+
+## Known Issues
+
+- keyboard event is not consumed; in YouTube case when user type 'M....' -> page Muted (M - shortcut) and than typing runs

@@ -1,10 +1,41 @@
 "use strict";
 const SUCCESSION_MS = 300;
+const INPUT_SELECTOR = [
+    'input[type="text"]:not([disabled]):not([readonly])',
+    'input[type="search"]:not([disabled]):not([readonly])',
+    'input[type="email"]:not([disabled]):not([readonly])',
+    'input[type="url"]:not([disabled]):not([readonly])',
+    'input[type="number"]:not([disabled]):not([readonly])',
+    'input[type="password"]:not([disabled]):not([readonly])',
+    'input:not([type]):not([disabled]):not([readonly])',
+    'textarea:not([disabled]):not([readonly])',
+    '[contenteditable="true"]',
+    '[contenteditable=""]',
+    '[role="textbox"]',
+    '[role="searchbox"]',
+    '[role="combobox"]',
+].join(',');
 function main() {
     console.log('%c⌨️  JustType is active — just start typing.', 'color: #a78bfa; font-weight: bold; font-size: 13px;');
     let pendingKey = null;
     let pendingTime = 0;
     let justTypeTarget = null;
+    const inputTimestamps = new WeakMap();
+    const observer = new MutationObserver((mutations) => {
+        const now = Date.now();
+        for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+                if (!(node instanceof HTMLElement))
+                    continue;
+                if (node.matches(INPUT_SELECTOR))
+                    inputTimestamps.set(node, now);
+                for (const el of node.querySelectorAll(INPUT_SELECTOR)) {
+                    inputTimestamps.set(el, now);
+                }
+            }
+        }
+    });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
     document.addEventListener('mousedown', () => {
         justTypeTarget = null;
     }, { capture: true, passive: true });
@@ -27,7 +58,7 @@ function main() {
             const firstChar = pendingKey;
             pendingKey = null;
             pendingTime = 0;
-            const input = findBestInput();
+            const input = findBestInput(inputTimestamps);
             if (!input)
                 return;
             e.preventDefault();
@@ -85,27 +116,12 @@ function insertChar(input, char) {
     formInput.selectionStart = formInput.selectionEnd = start + char.length;
     formInput.dispatchEvent(new Event('input', { bubbles: true }));
 }
-function findBestInput() {
-    const selector = [
-        'input[type="text"]:not([disabled]):not([readonly])',
-        'input[type="search"]:not([disabled]):not([readonly])',
-        'input[type="email"]:not([disabled]):not([readonly])',
-        'input[type="url"]:not([disabled]):not([readonly])',
-        'input[type="number"]:not([disabled]):not([readonly])',
-        'input[type="password"]:not([disabled]):not([readonly])',
-        'input:not([type]):not([disabled]):not([readonly])',
-        'textarea:not([disabled]):not([readonly])',
-        '[contenteditable="true"]',
-        '[contenteditable=""]',
-        '[role="textbox"]',
-        '[role="searchbox"]',
-        '[role="combobox"]',
-    ].join(',');
+function findBestInput(inputTimestamps) {
     const vh = window.innerHeight;
     const vw = window.innerWidth;
-    let best = null;
-    let bestScore = -1;
-    for (const el of document.querySelectorAll(selector)) {
+    let bestRecent = null;
+    let bestFallback = null;
+    for (const el of document.querySelectorAll(INPUT_SELECTOR)) {
         const rect = el.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0)
             continue;
@@ -118,12 +134,17 @@ function findBestInput() {
             continue;
         if (parseFloat(style.opacity) === 0)
             continue;
-        const score = rect.width * rect.height;
-        if (score > bestScore) {
-            bestScore = score;
-            best = el;
+        const ts = inputTimestamps.get(el);
+        if (ts !== undefined) {
+            if (!bestRecent || ts > bestRecent.ts)
+                bestRecent = { el, ts };
+        }
+        else {
+            const area = rect.width * rect.height;
+            if (!bestFallback || area > bestFallback.area)
+                bestFallback = { el, area };
         }
     }
-    return best;
+    return bestRecent?.el ?? bestFallback?.el ?? null;
 }
 main();
