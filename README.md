@@ -23,7 +23,25 @@ Inspired by [this insight from Tiago](https://youtube.com/shorts/_RHiFAxISuM?si=
 
 ---
 
-## Build
+## For Users
+
+**Chrome Extension**
+
+Install from the [Chrome Web Store]().
+
+**npm package**
+
+Coming soon.
+
+**Script tag**
+
+```html
+<script src="https://cdn.justtype.dev/justtype.min.js"></script>
+```
+
+---
+
+## For Developers
 
 Prerequisites: **Node.js** and **npm**.
 
@@ -40,9 +58,7 @@ To watch for changes during development:
 npm run watch
 ```
 
----
-
-## Load in Chrome
+### Load in Chrome
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode** (toggle in the top-right)
