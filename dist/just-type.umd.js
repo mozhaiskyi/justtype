@@ -1,5 +1,5 @@
 "use strict";
-(() => {
+var JustType = (() => {
   // src/core.ts
   var SUCCESSION_MS = 300;
   var INPUT_SELECTOR = [
@@ -49,7 +49,6 @@
     window.addEventListener(
       "keydown",
       (e) => {
-        var _a;
         if (e.key === "Escape" && justTypeTarget && document.activeElement === justTypeTarget) {
           justTypeTarget.blur();
           justTypeTarget = null;
@@ -72,7 +71,7 @@
           justTypeTarget = input;
           insertChar(input, firstChar);
           insertChar(input, e.key);
-          (_a = options == null ? void 0 : options.onActivation) == null ? void 0 : _a.call(options);
+          options?.onActivation?.();
         } else {
           pendingKey = e.key;
           pendingTime = now;
@@ -104,7 +103,7 @@
     const start = typeof formInput.selectionStart === "number" ? formInput.selectionStart : formInput.value.length;
     const end = typeof formInput.selectionEnd === "number" ? formInput.selectionEnd : formInput.value.length;
     const newValue = formInput.value.slice(0, start) + char + formInput.value.slice(end);
-    if (descriptor == null ? void 0 : descriptor.set) {
+    if (descriptor?.set) {
       descriptor.set.call(formInput, newValue);
     } else {
       formInput.value = newValue;
@@ -133,15 +132,9 @@
         if (!bestFallback || area > bestFallback.area) bestFallback = { el, area };
       }
     }
-    return (bestRecent == null ? void 0 : bestRecent.el) ?? (bestFallback == null ? void 0 : bestFallback.el) ?? null;
+    return bestRecent?.el ?? bestFallback?.el ?? null;
   }
 
-  // src/content.ts
-  initJustType({
-    onActivation: () => {
-      chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
-        chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
-      });
-    }
-  });
+  // src/auto.ts
+  initJustType();
 })();

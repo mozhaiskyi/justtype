@@ -1,13 +1,32 @@
 {
   "name": "just-type",
   "version": "1.0.0",
-  "private": true,
+  "description": "Start typing anywhere — JustType finds the right input and routes your text. No clicking. No missed shortcuts.",
+  "main": "dist/just-type.umd.js",
+  "module": "dist/just-type.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/just-type.mjs",
+      "require": "./dist/just-type.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch"
+    "typecheck": "tsc --noEmit",
+    "build:ext": "esbuild src/content.ts --bundle --format=iife --target=chrome90 --outfile=chrome-ext/content.js",
+    "build:npm:esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/just-type.mjs",
+    "build:npm:iife": "esbuild src/auto.ts --bundle --format=iife --global-name=JustType --outfile=dist/just-type.umd.js",
+    "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist",
+    "build": "npm run build:ext && npm run build:npm:esm && npm run build:npm:iife && npm run build:types",
+    "watch": "npm run build:ext -- --watch"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.320",
+    "esbuild": "^0.25.12",
     "typescript": "^5.8.3"
   }
 }
