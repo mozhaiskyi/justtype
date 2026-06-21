@@ -1,0 +1,10 @@
+node_modules/
+tests/
+.env
+*.log
+chrome-extension/
+.claude
+description.md
+donate.md
+references.md
+CLAUDE.md
