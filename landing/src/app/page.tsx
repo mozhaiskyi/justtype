@@ -4,10 +4,20 @@ import CodeSnippet from '@/components/CodeSnippet';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center w-full">
+    <main className="relative flex flex-col items-center w-full">
+
+      {/* Blobs — absolute so they scroll with the page */}
+      <div aria-hidden="true" className="absolute top-0 inset-x-0 h-[500px] overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 left-[20%] w-72 h-72 bg-purple-300/60 rounded-full blur-3xl" />
+        <div className="absolute top-8 right-[15%] w-80 h-64 bg-blue-300/50 rounded-full blur-3xl" />
+        <div className="absolute bottom-100 left-[40%] w-64 h-64 bg-pink-300/50 rounded-full blur-3xl" />
+      </div>
+
+      {/* Glass overlay — fixed so it covers the full viewport always */}
+      <div aria-hidden="true" className="fixed inset-0 -z-10 bg-[#DDDDDD]/10 backdrop-blur-[80px] pointer-events-none" />
 
       {/* Hero */}
-      <section className="hero-gradient w-full flex flex-col items-center text-center pt-20 pb-24 px-6">
+      <section className="w-full flex flex-col items-center text-center pt-20 pb-24 px-6">
         <h1
           className="font-signifier text-5xl sm:text-6xl tracking-tight mb-3"
         >
