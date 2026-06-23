@@ -13,34 +13,35 @@
 
 .card {
   border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
-  padding: 1.5rem;
-  min-height: 140px;
+  background: #f5f5f7;
+  min-height: 270px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1.5rem;
 }
 
 .input {
   width: 100%;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.25rem;
   font-size: 0.875rem;
   color: #9ca3af;
   outline: none;
   cursor: default;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .input::placeholder {
   color: #9ca3af;
 }
 
-.inputActive {
-  border-color: #d1d5db;
-  box-shadow: 0 0 0 1px #9ca3af;
+.input:focus {
+  box-shadow: 0 4px 14px rgba(120, 100, 220, 0.18);
+  border: 1px solid #3139F6;
 }
 
 .label {

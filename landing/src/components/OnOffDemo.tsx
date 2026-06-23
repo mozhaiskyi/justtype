@@ -9,8 +9,6 @@ export default function OnOffDemo() {
             type="text"
             placeholder="Text box..."
             className={styles.input}
-            readOnly
-            tabIndex={-1}
           />
         </div>
         <p className={styles.label}>
@@ -23,9 +21,7 @@ export default function OnOffDemo() {
           <input
             type="text"
             placeholder="Text box..."
-            className={`${styles.input} ${styles.inputActive}`}
-            readOnly
-            tabIndex={-1}
+            className={styles.input}
           />
         </div>
         <p className={styles.label}>
