@@ -9,6 +9,7 @@ export default function OnOffDemo() {
             type="text"
             placeholder="Text box..."
             className={styles.input}
+            tabIndex={-1}
           />
         </div>
         <p className={styles.label}>
@@ -22,6 +23,7 @@ export default function OnOffDemo() {
             type="text"
             placeholder="Text box..."
             className={styles.input}
+            tabIndex={-1}
           />
         </div>
         <p className={styles.label}>
