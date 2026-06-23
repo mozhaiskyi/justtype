@@ -62,7 +62,7 @@ export default function Home() {
           >
             How does it work?
           </h2>
-          <div className="flex flex-col gap-4 text-sm text-neutral-700 leading-relaxed">
+          <div className="flex flex-col gap-4 text-base text-neutral-700 leading-relaxed">
             <p>
               There&apos;s a text box on your screen. You start typing. Nothing happens — it wasn&apos;t focused. You reach for the mouse, click, try again.
             </p>
@@ -82,7 +82,7 @@ export default function Home() {
           >
             Now, try to type
           </h2>
-          <p className="text-sm text-neutral-700 leading-relaxed mb-8">
+          <p className="text-base text-neutral-700 leading-relaxed mb-8">
             It already works on that website. Just start to type using your keyboard. Anything...
           </p>
           <OnOffDemo />
@@ -97,7 +97,7 @@ export default function Home() {
           >
             But wait — what about shortcuts?
           </h2>
-          <div className="flex flex-col gap-4 text-sm text-neutral-700 leading-relaxed mb-8">
+          <div className="flex flex-col gap-4 text-base text-neutral-700 leading-relaxed mb-8">
             <p>
               Spacebar plays. J and L seek. Route every keystroke to an input and those break.
               <br />
@@ -132,7 +132,7 @@ export default function Home() {
           >
             For developers
           </h2>
-          <p className="text-sm text-neutral-700 leading-relaxed mb-6">
+          <p className="text-base text-neutral-700 leading-relaxed mb-6">
             Anyone with the{' '}
             <a href="#" className="underline underline-offset-2">Chrome extension</a>{' '}
             gets it automatically on every site. But if you want it built into your site for all visitors — no extension required — it&apos;s one line of code.
@@ -140,7 +140,7 @@ export default function Home() {
 
           <CodeSnippet language="bash" code="npm install @mozhaiskyi/justtype" />
 
-          <p className="text-sm text-neutral-700 leading-relaxed mt-6 mb-4">
+          <p className="text-base text-neutral-700 leading-relaxed mt-6 mb-4">
             Or drop in a classic CDN script tag.
           </p>
 
@@ -159,7 +159,7 @@ export default function Home() {
           >
             Thanksgiving
           </h2>
-          <p className="text-sm text-neutral-700 leading-relaxed">
+          <p className="text-base text-neutral-700 leading-relaxed">
             Tool idea is inspired by{' '}
             <a href="#" className="underline underline-offset-2">this insight from Tiago</a>
             : wait 150ms after the first keypress. If a second printable character arrives within that window, it&apos;s almost certainly typing — not a shortcut. Focus the field and replay everything buffered so far. The delay is imperceptible to humans but large enough to distinguish intent.
@@ -183,7 +183,7 @@ export default function Home() {
               >
                 Is Just Type safe to use?
               </h3>
-              <p className="text-sm text-neutral-700 leading-relaxed">
+              <p className="text-base text-neutral-700 leading-relaxed">
                 Just Type runs entirely in your browser. It does not read, store, or transmit what you type — it only detects that a key was pressed, then routes focus to the right input field. No keylogging. No network requests. No data ever leaves your device.
               </p>
             </div>
@@ -194,7 +194,7 @@ export default function Home() {
               >
                 Is it free?
               </h3>
-              <p className="text-sm text-neutral-700 leading-relaxed">
+              <p className="text-base text-neutral-700 leading-relaxed">
                 Just Type is free to install and use. No subscription, no account required. If it saves you time and you&apos;d like to support development, there&apos;s a &ldquo;Buy me a coffee&rdquo; option — but it&apos;s entirely optional.
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function Home() {
               >
                 Will it type into password fields?
               </h3>
-              <p className="text-sm text-neutral-700 leading-relaxed">
+              <p className="text-base text-neutral-700 leading-relaxed">
                 No. Password fields are explicitly excluded. JustType will never target a <code className="text-xs bg-neutral-100 px-1.5 py-0.5 rounded font-mono">type=&quot;password&quot;</code> input, even if it&apos;s the only one on the page.
               </p>
             </div>
