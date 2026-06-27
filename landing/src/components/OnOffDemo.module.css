@@ -21,6 +21,8 @@
   justify-content: center;
   padding: 0 1.5rem;
   cursor: not-allowed;
+  position: relative;
+  overflow: hidden;
 }
 
 .input {
@@ -59,4 +61,70 @@
 .on {
   font-weight: 600;
   color: #22c55e;
+}
+
+.lettersArea {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.letterTile {
+  width: 56px;
+  height: 56px;
+  background: #111;
+  border-radius: 12px;
+  color: white;
+  font-size: 28px;
+  font-family: Georgia, 'Times New Roman', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideInFromLeft 0.3s ease-out forwards;
+}
+
+.letterTile[data-exiting='true'] {
+  animation: slideOutToLeft 0.3s ease-in forwards;
+}
+
+.letterTileConsumed[data-exiting='true'] {
+  animation: consumeIntoField 0.4s ease-in forwards;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+}
+
+@keyframes consumeIntoField {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110px) scale(0);
+    opacity: 0;
+  }
 }
