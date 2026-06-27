@@ -58,12 +58,13 @@ export default function OnOffDemo() {
             placeholder="Text box..."
             className={styles.input}
             tabIndex={-1}
+            disabled
           />
           <div className={styles.lettersArea}>
             {letters.map(letter => (
               <div
                 key={letter.id}
-                className={`${styles.letterTile} ${styles.letterTileConsumed}`}
+                className={styles.letterTile}
                 data-exiting={letter.exiting}
               >
                 {letter.char.toUpperCase()}
@@ -88,7 +89,7 @@ export default function OnOffDemo() {
             {letters.map(letter => (
               <div
                 key={letter.id}
-                className={styles.letterTile}
+                className={`${styles.letterTile} ${styles.letterTileConsumed}`}
                 data-exiting={letter.exiting}
               >
                 {letter.char.toUpperCase()}
