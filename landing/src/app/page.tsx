@@ -108,10 +108,10 @@ export default function Home() {
             </p>
           </div>
 
-          <VideoPlayer />
+          <VideoPlayer src="/office.mp4" />
 
           <div className="mt-6 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-neutral-200 flex-shrink-0" />
+            <img src="/kevin.png" alt="Kevin" className="w-12 h-12 rounded-full flex-shrink-0 object-cover" />
             <input
               type="text"
               placeholder="Add a comment..."
