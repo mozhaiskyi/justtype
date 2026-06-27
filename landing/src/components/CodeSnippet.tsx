@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import styles from './CodeSnippet.module.css';
 
 interface CodeSnippetProps {
-  code: string;
-  language?: string;
+  children: ReactNode;
+  copyText: string;
 }
 
-export default function CodeSnippet({ code }: CodeSnippetProps) {
+export default function CodeSnippet({ children, copyText }: CodeSnippetProps) {
   const [copied, setCopied] = useState(false);
 
   function handleCopy() {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(copyText);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
@@ -20,7 +20,7 @@ export default function CodeSnippet({ code }: CodeSnippetProps) {
   return (
     <div className={styles.container}>
       <span className={styles.lineNumber}>1</span>
-      <code className={styles.code}>{code}</code>
+      <code className={styles.code}>{children}</code>
       <button onClick={handleCopy} className={styles.copyButton} aria-label="Copy to clipboard">
         {copied ? (
           <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>

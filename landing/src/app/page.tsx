@@ -138,16 +138,29 @@ export default function Home() {
             gets it automatically on every site. But if you want it built into your site for all visitors — no extension required — it&apos;s one line of code.
           </p>
 
-          <CodeSnippet language="bash" code="npm install @mozhaiskyi/justtype" />
+          <CodeSnippet copyText="npm install @mozhaiskyi/justtype">
+            <span style={{ color: '#6366f1' }}>npm</span>
+            {' '}
+            <span style={{ color: '#374151' }}>install</span>
+            {' '}
+            <span style={{ color: '#059669' }}>@mozhaiskyi/justtype</span>
+          </CodeSnippet>
 
           <p className="text-base text-black leading-relaxed mt-6 mb-4">
             Or drop in a classic CDN script tag.
           </p>
 
-          <CodeSnippet
-            language="html"
-            code={`<script src="https://cdn.jsdelivr.net/npm/@mozhaiskyi/justtype"></script>`}
-          />
+          <CodeSnippet copyText={`<script src="https://cdn.jsdelivr.net/npm/@mozhaiskyi/justtype"></script>`}>
+            <span style={{ color: '#6b7280' }}>&lt;</span>
+            <span style={{ color: '#7c3aed' }}>script</span>
+            {' '}
+            <span style={{ color: '#0369a1' }}>src</span>
+            <span style={{ color: '#6b7280' }}>=</span>
+            <span style={{ color: '#d97706' }}>&quot;https://cdn.jsdelivr.net/npm/@mozhaiskyi/justtype&quot;</span>
+            <span style={{ color: '#6b7280' }}>&gt;&lt;/</span>
+            <span style={{ color: '#7c3aed' }}>script</span>
+            <span style={{ color: '#6b7280' }}>&gt;</span>
+          </CodeSnippet>
         </section>
 
         <hr className="border-neutral-100" />
