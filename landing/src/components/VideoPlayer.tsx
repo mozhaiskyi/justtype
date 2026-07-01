@@ -21,7 +21,12 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
     if (!player) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => { isVisible.current = entry.isIntersecting; },
+      ([entry]) => {
+        isVisible.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          (document.activeElement as HTMLElement)?.blur();
+        }
+      },
       { threshold: 0.5 }
     );
     observer.observe(player);
