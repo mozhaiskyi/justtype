@@ -27,16 +27,18 @@ Inspired by [this insight from Tiago](https://youtube.com/shorts/_RHiFAxISuM?si=
 
 **Chrome Extension**
 
-Install from the [Chrome Web Store]().
+Install from the [Chrome Web Store](#).
 
 **npm package**
 
-Coming soon.
+```bash
+npm install @mozhaiskyi/justtype
+```
 
 **Script tag**
 
 ```html
-<script src="https://cdn.justtype.dev/justtype.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mozhaiskyi/justtype"></script>
 ```
 
 ---
