@@ -4,6 +4,9 @@ import createMDX from "@next/mdx";
 const withMDX = createMDX({ extension: /\.mdx?$/ });
 
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath: "/justtype",
+  images: { unoptimized: true },
   pageExtensions: ["ts", "tsx", "mdx"],
   turbopack: {
     root: __dirname,
