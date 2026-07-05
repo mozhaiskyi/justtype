@@ -25,6 +25,7 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
         isVisible.current = entry.isIntersecting;
         if (entry.isIntersecting) {
           (document.activeElement as HTMLElement)?.blur();
+          document.dispatchEvent(new CustomEvent('videoPlayerVisible'));
         }
       },
       { threshold: 0.5 }

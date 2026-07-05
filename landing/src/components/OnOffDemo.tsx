@@ -9,6 +9,7 @@ export default function OnOffDemo() {
   const lettersRef = useRef<Letter[]>([]);
   lettersRef.current = letters;
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const rightInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,6 +50,17 @@ export default function OnOffDemo() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleVideoVisible = () => {
+      timersRef.current.forEach(clearTimeout);
+      timersRef.current = [];
+      setLetters([]);
+      if (rightInputRef.current) rightInputRef.current.value = '';
+    };
+    document.addEventListener('videoPlayerVisible', handleVideoVisible);
+    return () => document.removeEventListener('videoPlayerVisible', handleVideoVisible);
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.column}>
@@ -80,6 +92,7 @@ export default function OnOffDemo() {
       <div className={styles.column}>
         <div className={styles.card}>
           <input
+            ref={rightInputRef}
             type="text"
             placeholder="Text box..."
             className={styles.input}
