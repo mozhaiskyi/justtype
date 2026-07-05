@@ -8,8 +8,8 @@ if ((window as any).__justTypeActive) {
 } else {
   initJustType({
     onActivation: () => {
-      chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
-        chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
+      chrome.storage?.local?.get({ justTypeCount: 0 }, (data) => {
+        chrome.storage?.local?.set({ justTypeCount: data.justTypeCount + 1 });
       });
     },
   });

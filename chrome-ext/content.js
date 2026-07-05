@@ -147,8 +147,10 @@
   } else {
     initJustType({
       onActivation: () => {
-        chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
-          chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
+        var _a, _b;
+        (_b = (_a = chrome.storage) == null ? void 0 : _a.local) == null ? void 0 : _b.get({ justTypeCount: 0 }, (data) => {
+          var _a2, _b2;
+          (_b2 = (_a2 = chrome.storage) == null ? void 0 : _a2.local) == null ? void 0 : _b2.set({ justTypeCount: data.justTypeCount + 1 });
         });
       }
     });
