@@ -219,6 +219,17 @@ export default function Home() {
                 No. Password fields are explicitly excluded. JustType will never target a <code className="text-xs bg-neutral-100 px-1.5 py-0.5 rounded font-mono">type=&quot;password&quot;</code> input, even if it&apos;s the only one on the page.
               </p>
             </div>
+
+            <div>
+              <h3
+                className="font-signifier text-lg mb-3"
+              >
+                What if the page has several inputs?
+              </h3>
+              <p className="text-base text-black leading-relaxed">
+                Just Type analyzes all visible fields and picks the most relevant one. Position, visibility, context — it considers everything and gets it right.
+              </p>
+            </div>
           </div>
         </section>
 
