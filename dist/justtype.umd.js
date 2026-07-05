@@ -18,6 +18,8 @@ var JustType = (() => {
     '[role="combobox"]'
   ].join(",");
   function initJustType(options) {
+    if (window.__justTypeActive) return;
+    window.__justTypeActive = true;
     console.log(
       "%c\u2328\uFE0F  JustType is active \u2014 just start typing.",
       "color: #a78bfa; font-weight: bold; font-size: 13px;"

@@ -18,6 +18,8 @@
     '[role="combobox"]'
   ].join(",");
   function initJustType(options) {
+    if (window.__justTypeActive) return;
+    window.__justTypeActive = true;
     console.log(
       "%c\u2328\uFE0F  JustType is active \u2014 just start typing.",
       "color: #a78bfa; font-weight: bold; font-size: 13px;"
@@ -137,11 +139,18 @@
   }
 
   // src/content.ts
-  initJustType({
-    onActivation: () => {
-      chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
-        chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
-      });
-    }
-  });
+  if (window.__justTypeActive) {
+    console.log(
+      "%c\u2328\uFE0F  JustType npm package detected \u2014 extension is dormant.",
+      "color: #a78bfa; font-weight: bold; font-size: 13px;"
+    );
+  } else {
+    initJustType({
+      onActivation: () => {
+        chrome.storage.local.get({ justTypeCount: 0 }, (data) => {
+          chrome.storage.local.set({ justTypeCount: data.justTypeCount + 1 });
+        });
+      }
+    });
+  }
 })();

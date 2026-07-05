@@ -1,6 +1,6 @@
 {
   "name": "@mozhaiskyi/justtype",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Start typing anywhere — JustType finds the right input and routes your text. No clicking. No missed shortcuts.",
   "main": "dist/justtype.umd.js",
   "module": "dist/justtype.mjs",

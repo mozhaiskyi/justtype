@@ -21,6 +21,9 @@ export interface JustTypeOptions {
 }
 
 export function initJustType(options?: JustTypeOptions): void {
+  if ((window as any).__justTypeActive) return;
+  (window as any).__justTypeActive = true;
+
   console.log(
     '%c⌨️  JustType is active — just start typing.',
     'color: #a78bfa; font-weight: bold; font-size: 13px;'
