@@ -1,6 +1,6 @@
 {
   "name": "@mozhaiskyi/justtype",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Start typing anywhere — JustType finds the right input and routes your text. No clicking. No missed shortcuts.",
   "main": "dist/justtype.umd.js",
   "module": "dist/justtype.mjs",
@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build:ext:debug": "mkdir -p chrome-ext/debug && esbuild src/content.ts --bundle --format=iife --target=chrome90 --outfile=chrome-ext/debug/content.js && cp src/manifest.json chrome-ext/debug/manifest.json && cp src/icon.ico chrome-ext/debug/icon.ico && cp LICENSE chrome-ext/debug/LICENSE",
-    "build:ext:release": "mkdir -p chrome-ext/release && esbuild src/content.ts --bundle --format=iife --target=chrome90 --minify --outfile=chrome-ext/release/content.js && cp src/manifest.json chrome-ext/release/manifest.json && cp src/icon.ico chrome-ext/release/icon.ico && cp LICENSE chrome-ext/release/LICENSE && cd chrome-ext/release && zip -j justtype.zip content.js manifest.json icon.ico LICENSE && rm content.js manifest.json icon.ico LICENSE",
+    "build:ext:debug": "mkdir -p chrome-ext/debug && esbuild src/content.ts --bundle --format=iife --target=chrome90 --outfile=chrome-ext/debug/content.js && cp src/manifest.json chrome-ext/debug/manifest.json && cp src/icon16.png chrome-ext/debug/icon16.png && cp src/icon48.png chrome-ext/debug/icon48.png && cp src/icon128.png chrome-ext/debug/icon128.png && cp LICENSE chrome-ext/debug/LICENSE",
+    "build:ext:release": "mkdir -p chrome-ext/release && esbuild src/content.ts --bundle --format=iife --target=chrome90 --minify --outfile=chrome-ext/release/content.js && cp src/manifest.json chrome-ext/release/manifest.json && cp src/icon16.png chrome-ext/release/icon16.png && cp src/icon48.png chrome-ext/release/icon48.png && cp src/icon128.png chrome-ext/release/icon128.png && cp LICENSE chrome-ext/release/LICENSE && cd chrome-ext/release && zip -j justtype.zip content.js manifest.json icon16.png icon48.png icon128.png LICENSE && rm content.js manifest.json icon16.png icon48.png icon128.png LICENSE",
     "build:ext": "npm run build:ext:debug && npm run build:ext:release",
     "build:npm:esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/justtype.mjs",
     "build:npm:iife": "esbuild src/auto.ts --bundle --format=iife --global-name=JustType --outfile=dist/justtype.umd.js",

@@ -5,9 +5,9 @@
   "description": "Start typing anywhere — JustType finds the right input and routes your text. No clicking. No missed shortcuts.",
   "permissions": ["storage"],
   "icons": {
-    "16": "icon.ico",
-    "48": "icon.ico",
-    "128": "icon.ico"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "content_scripts": [
     {
