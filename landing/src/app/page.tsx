@@ -1,6 +1,7 @@
 import VideoPlayer from '@/components/VideoPlayer';
 import OnOffDemo from '@/components/OnOffDemo';
 import CodeSnippet from '@/components/CodeSnippet';
+import CommentInput from '@/components/CommentInput';
 
 export default function Home() {
   return (
@@ -112,11 +113,7 @@ export default function Home() {
 
           <div className="mt-6 flex items-center gap-3">
             <img src="/kevin.png" alt="Kevin" className="w-12 h-12 rounded-full flex-shrink-0 object-cover" />
-            <input
-              type="text"
-              placeholder="Add a comment..."
-              className="flex-1 bg-neutral-50 border border-neutral-200 rounded-full px-4 py-2 text-sm text-neutral-500 placeholder:text-neutral-400 outline-none focus:border-neutral-400 transition-colors"
-            />
+            <CommentInput />
           </div>
           <p className="mt-3 text-xs text-neutral-500 text-center">
             Try to click <strong>Spacebar, J, K, L...</strong> Than, start to type comment
