@@ -32,7 +32,7 @@ export default function Home() {
             href="#"
             className="flex items-center gap-2 bg-neutral-900 text-white text-sm px-5 py-2.5 rounded-full hover:bg-neutral-700 transition-colors"
           >
-            <img src="/chrome.svg" alt="Chrome" className="w-4 h-4" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/chrome.svg`} alt="Chrome" className="w-4 h-4" />
             Add to Chrome
           </a>
 
@@ -41,7 +41,7 @@ export default function Home() {
             href="https://github.com/mozhaiskyi/justtype"
             className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 hover:border-neutral-400 transition-colors bg-white"
           >
-            <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/github.svg`} alt="GitHub" className="w-5 h-5" />
           </a>
 
           {/* npm */}
@@ -49,7 +49,7 @@ export default function Home() {
             href="https://www.npmjs.com/package/@mozhaiskyi/justtype"
             className="flex items-center justify-center h-10 px-3 rounded-full border border-neutral-200 hover:border-neutral-400 transition-colors bg-white"
           >
-            <img src="/npm.svg" alt="npm" className="h-4" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/npm.svg`} alt="npm" className="h-4" />
           </a>
         </div>
       </section>
@@ -109,10 +109,10 @@ export default function Home() {
             </p>
           </div>
 
-          <VideoPlayer src="/office.mp4" />
+          <VideoPlayer src={`${process.env.NEXT_PUBLIC_BASE_PATH}/office.mp4`} />
 
           <div className="mt-6 flex items-center gap-3">
-            <img src="/kevin.png" alt="Kevin" className="w-12 h-12 rounded-full flex-shrink-0 object-cover" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/kevin.png`} alt="Kevin" className="w-12 h-12 rounded-full flex-shrink-0 object-cover" />
             <CommentInput />
           </div>
           <p className="mt-3 text-xs text-neutral-500 text-center">
